@@ -25,10 +25,16 @@ gem 'bootstrap-kaminari-views'
 gem 'static_model'
 gem 'roboto'
 gem 'meta-tags'
+gem 'puma'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails_layout'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
 group :development, :test do
   gem 'rubocop'
