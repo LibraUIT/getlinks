@@ -1,0 +1,5 @@
+---
+- id: 1
+  name: Server 1
+  url: 'http://linkaz.net/index.php?action=javpostlink'
+  captcha: false

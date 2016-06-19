@@ -1,0 +1,19 @@
+<div class="medium-5 large-3 columns">
+  <div class="callout secondary">
+    <%= form_for @link, method: :post, url: getlink_path do |f| %>
+      <div class="row">
+        <div class="small-12 columns">
+          <label><h3><i class="fa fa-cloud-download" aria-hidden="true"></i> Get Video</h3>
+            <%= f.url_field :url, class: "form-control", placeholder: "Enter your link ...", required: true %>
+          </label>
+        </div>
+        <div class="small-12 columns">
+          <label>Select Server
+            <%= select :server, :action, @servers.map{|c| [c.name, c.id]}, {class: 'form-control', required: true } %>
+          </label>
+          <button type="submit" class="button">Search Now!</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

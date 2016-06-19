@@ -1,0 +1,65 @@
+<br>
+
+<div class="row">
+
+  <div class="medium-7 large-6 columns">
+    <h3>Why should you get link javhd.com here?</h3>
+    <p class="subheader">
+      <h6><i class="fa fa-check-square-o" aria-hidden="true"></i> It's free (and always will be)</h6>
+      <h6><i class="fa fa-check-square-o" aria-hidden="true"></i> No registration required</h6>
+      <h6><i class="fa fa-check-square-o" aria-hidden="true"></i> Support all websites on JavHD Network</h6>
+      <h6><i class="fa fa-check-square-o" aria-hidden="true"></i> Live Streaming Support</h6>
+    </p>
+    <h4>How to get link and download javhd videos?</h4>
+    <p class="subheader">
+      <h6>1. Enter a video url (copy from javhd.com).</h6>
+      <h6>2. Press the Search Now! button to submit!</h6>
+      <h6>3. Choose the video quality to start download javhd video. Enjoy!</h6>
+    </p>
+    <h4>Why should you register account ?</h4>
+    <p class="subheader">
+      <h6><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> It's free (and always will be)</h6>
+      <h6><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Save your links</h6>
+      <h6><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> And more features for member !</h6>
+    </p>
+    <button class="button">Tutorial</button>
+    <button class="button">Register Free</button>
+  </div>
+
+  <div class="show-for-large large-3 columns">
+    <%= image_tag "link4u-photo-1", 'alt' => 'LINKS4U - Free get link JavHD' %>
+  </div>
+
+  <%= render "form" %>
+  <%= render "commons/support" %>
+
+</div>
+<div class="row column">
+  <hr>
+</div>
+<div class="row column">
+  <p class="lead"><i class="fa fa-cloud-download" aria-hidden="true"></i> Get Link Here !</p>
+</div>
+<div class="row small-up-1 medium-up-2 large-up-3">
+  <%= form_for @link, method: :post, url: getlink_path do |f| %>
+    <div style="padding:20px" class="row">
+      <div class="small-6 columns">
+        <label>
+          <%= f.url_field :url, class: "form-control", placeholder: "Enter your link ...", required: true %>
+        </label>
+      </div>
+      <div class="small-6 columns">
+        <label>
+          <%= select :server, :action, @servers.map{|c| [c.name, c.id]}, {class: 'form-control', required: true } %>
+        </label>
+      </div>
+      <div class="small-6 columns">
+        <label><button type="submit" class="button">Search Now!</button></label>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="row column">
+  <hr>
+</div>
+<%= render "commons/statistics" %>
