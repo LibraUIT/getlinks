@@ -24,6 +24,7 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'static_model'
 gem 'roboto'
+gem 'meta-tags'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
