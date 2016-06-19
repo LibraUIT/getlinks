@@ -6,8 +6,7 @@
   <table>
     <% @links.each do |link| %>
       <tr>
-        <td width="50%"><%= link_to link[:url].truncate(70), link[:url], target: '_blank' %></td>
-        <td width="50%"><%= link[:name] %></td>
+        <td width="50%"><%= link_to link[:url], link[:url], target: '_blank' %></td>
       </tr>
     <% end %>
   </table>
