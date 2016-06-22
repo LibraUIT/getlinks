@@ -12,5 +12,6 @@
  *
  *= require foundation.min.css
  *= require font-awesome
+ *= require devise
  *= require_self
  */

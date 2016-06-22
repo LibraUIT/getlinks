@@ -13,8 +13,12 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <!--<li><a href="#">My Account</a></li>-->
-      <li><a class="button">Login</a></li>
+      <% if current_user %>
+        <li><a href="#">My Account</a></li>
+      <% else %>
+        <li><a href="<%= new_user_registration_path %>" class="button">Sign up</a></li>
+        <li><a href="<%= new_user_session_path %>" class="button">Log in</a></li>
+      <% end %>
     </ul>
   </div>
 </div>

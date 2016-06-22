@@ -1,0 +1,40 @@
+<div class="devise-form">
+  <div class="text-center">
+    <h2>Log In</h2>
+  </div>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <% if devise_error_messages!  %>
+      <div class="alert alert-danger">
+          <h4>There was a problem</h4>
+          <div>
+            <ul>
+                <li><span>
+                  Your username / email or password was incorrect. Please try again.
+                </span></li>
+            </ul>
+          </div>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "off", placeholder: 'Your password' %>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end -%>
+
+    <div class="actions">
+      <%= f.submit "Log in", class: 'button' %>
+    </div>
+  <% end %>
+
+  <%= render "user/shared/links" %>
+</div>
