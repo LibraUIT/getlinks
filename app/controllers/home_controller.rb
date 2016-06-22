@@ -69,6 +69,10 @@ class HomeController < ApplicationController
     @video = "#{video}&cdn_creation_time=#{cdn_creation_time}&cdn_ttl=#{cdn_ttl}&cdn_bw=#{cdn_bw}&cdn_cv_memberid=#{cdn_cv_memberid}"
   end
 
+  def about
+    @link = Link.new
+  end
+
   private
 
   def link_param
