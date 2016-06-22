@@ -22,4 +22,10 @@ class User::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  def after_sign_in_path_for(_resource)
+    return admin_root_path if current_user.admin?
+    return user_root_path if current_user.user?
+    root_path
+  end
 end
