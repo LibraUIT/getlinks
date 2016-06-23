@@ -1,4 +1,7 @@
 <br>
+<div class="row">
+  <%= render "commons/ouo" %>
+</div>
 
 <div class="row">
 
@@ -38,23 +41,36 @@
   <hr>
 </div>
 <div class="row column">
-  <p class="lead"><i class="fa fa-cloud-download" aria-hidden="true"></i> Get Link Here !</p>
+  <h1 class="lead"><i class="fa fa-cloud-download" aria-hidden="true"></i> Get Link Here !</h1>
 </div>
 <div class="row small-up-1 medium-up-2 large-up-3">
   <%= form_for @link, method: :post, url: getlink_path do |f| %>
     <div style="padding:20px" class="row">
+        <div class="small-6 columns">
+          <label>
+            <%= f.url_field :url, class: "form-control", placeholder: "Enter your link ...", required: true %>
+          </label>
+          <h4>How To Use ?</h4>
+          <p>
+            1. Put the URL of the Video you want to Download.<br />
+
+            2. Click Download button to grab the video.<br />
+
+            3. Right Click then Save as to download the video (HD or SD Quality).<br />
+
+            This Video Downloading Website is developed and designed by <b>LINKNHANH</b> Team.<br />
+          </p>
+        </div>
+        <div class="small-6 columns">
+          <label>
+            <%= select :server, :action, @servers.map{|c| [c.name, c.id]}, {class: '', required: true }, style: 'display:none' %>
+            <button type="submit" class="button">Search Now!</button>
+          </label>
+        </div>
       <div class="small-6 columns">
-        <label>
-          <%= f.url_field :url, class: "form-control", placeholder: "Enter your link ...", required: true %>
-        </label>
-      </div>
-      <div class="small-6 columns">
-        <label>
-          <%= select :server, :action, @servers.map{|c| [c.name, c.id]}, {class: 'form-control', required: true } %>
-        </label>
-      </div>
-      <div class="small-6 columns">
-        <label><button type="submit" class="button">Search Now!</button></label>
+        <%= link_to 'http://ouo.io/zbgy7k', target: '_blank' do %>
+          <%= image_tag 'digitalocean-banner' %>
+        <% end %>
       </div>
     </div>
   <% end %>
