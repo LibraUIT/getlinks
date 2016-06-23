@@ -73,6 +73,12 @@ class HomeController < ApplicationController
     @link = Link.new
   end
 
+  def terms; end
+
+  def website; end
+
+  def contact; end
+
   private
 
   def link_param

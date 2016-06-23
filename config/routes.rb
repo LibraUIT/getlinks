@@ -16,4 +16,7 @@ Rails.application.routes.draw do
     resources :home
   end
   get :about, to: 'home#about'
+  get :website, to: 'home#website'
+  get :terms, to: 'home#terms'
+  get :contact, to: 'home#contact'
 end
