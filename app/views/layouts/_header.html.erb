@@ -7,14 +7,22 @@
         </a>
       </li>
       <li><a href="#">Get Link VIP</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="#">About</a></li>
+      <li><a href="<%= contact_path %>">Contact</a></li>
+      <li><a href="<%= about_path %>">About</a></li>
     </ul>
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <!--<li><a href="#">My Account</a></li>-->
-      <li><a class="button">Login</a></li>
+      <% if current_user %>
+        <% if current_user.admin? %>
+          <li><a class="button" href="<%= admin_root_path %>">My Account</a></li>
+        <% else %>
+        <li><a class="button" href="<%= user_root_path %>">My Account</a></li>
+        <% end %>
+      <% else %>
+        <li><a href="<%= new_user_registration_path %>" class="button">Sign up</a></li>
+        <li><a href="<%= new_user_session_path %>" class="button">Log in</a></li>
+      <% end %>
     </ul>
   </div>
 </div>

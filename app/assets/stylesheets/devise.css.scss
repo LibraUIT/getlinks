@@ -1,0 +1,32 @@
+.devise-form {
+  max-width: 400px;
+  margin: auto;
+  background-color: #FFF;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.alert {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.alert-danger {
+  background-color: #EF5350;
+  padding: 10px;
+  color: #FFF;
+}
+
+#error_explanation {
+  h2 {
+    font-size: 24px;
+  }
+
+  ul, li {
+    list-style-type: none;
+  }
+}

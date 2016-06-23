@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Admin Dashboard</title>
+<%= csrf_meta_tags %>
+<%= stylesheet_link_tag 'admin', :media => 'all' %>
+
+</head>
+
+<body>
+  <div id="wrapper">
+    <%= render 'commons/navbar' %>
+    <div id="page-wrapper">
+      <%= yield %>
+    </div>
+  </div>
+</body>
+<%= javascript_include_tag 'admin' %>
+</html>
