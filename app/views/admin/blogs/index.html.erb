@@ -16,6 +16,11 @@
               <%= link_to new_admin_blog_path, class: 'btn btn-success' do %>
                 <i class="fa fa-pencil" aria-hidden="true"></i> New blog
               <% end %>
+              <% if flash[:notice] %>
+                <div class="alert alert-success">
+                  <%= flash[:notice] %>
+                </div>
+              <% end %>
             </div>
         </div>
     </div>

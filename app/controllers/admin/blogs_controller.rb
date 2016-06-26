@@ -1,7 +1,25 @@
 class Admin::BlogsController < Admin::ApplicationController
   before_action :current_category, only: [:edit_categorie, :update_categorie, :destroy_categorie]
+  before_action :all_categories, only: [:new, :create, :edit, :update]
 
   def index
+  end
+
+  def new
+    @blog = Blog.new
+  end
+
+  def create
+    @blog = Blog.create(blog_params)
+    respond_to do |format|
+      if @blog.save
+        format.html { redirect_to admin_blogs_path, notice: 'Blog was successfully created.' }
+        format.json { render :new, status: :created, location: @blog }
+      else
+        format.html { render :new }
+        format.json { render json: @blog.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def new_categorie
@@ -55,7 +73,15 @@ class Admin::BlogsController < Admin::ApplicationController
     params.require(:category).permit(:name, :status)
   end
 
+  def blog_params
+    params.require(:blog).permit(:category_id, :title, :content, :image, :status)
+  end
+
   def current_category
     @categorie = Category.find(params[:id])
+  end
+
+  def all_categories
+    @categories = Category.by_actived
   end
 end
