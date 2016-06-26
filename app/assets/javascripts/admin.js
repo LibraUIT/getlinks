@@ -15,4 +15,4 @@
 //= require bootstrap-sprockets
 //= require ./admin/metisMenu.min.js
 //= require ./admin/sb-admin-2.js
-
+//= require markdown
