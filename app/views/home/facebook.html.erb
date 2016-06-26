@@ -1,0 +1,55 @@
+<div class="row">
+  <% if @output[:permission] %>
+    <div class="medium-7 large-6 columns">
+      <h3><%= @output[:title] %></h3>
+      <p class="subheader">
+        <h6>
+          <i class="fa fa-external-link-square" aria-hidden="true"></i>
+          <%= link_to @output[:url].truncate(50), @output[:url], target: '_blank' %>
+        </h6>
+        <h6>
+          <% if @output[:quality][:hd] %>
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+          <% else %>
+            <i class="fa fa-circle-thin" aria-hidden="true"></i>
+          <% end %>
+          HD
+        </h6>
+        <h6>
+          <% if @output[:quality][:sd] %>
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+          <% else %>
+            <i class="fa fa-circle-thin" aria-hidden="true"></i>
+          <% end %>
+          SD
+        </h6>
+      </p>
+      <h5>DOWNLOAD VIDEO</h5>
+      <% @output[:video].each do |video| %>
+        <%= link_to video[:url], class: 'button', target: '_blank' do %>
+          <i class="fa fa-download" aria-hidden="true"></i> <%= video[:quality] %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div style="ver" class="show-for-large large-3 columns">
+      <%= image_tag @output[:img], 'alt' => 'LINKNHANH.INFO - Free Download Video Facebook', style: 'width: 270px, height: 250px' %>
+    </div>
+  <% else %>
+    <div class="medium-7 large-9 columns">
+      <div class="alert alert-danger">
+        <h3>Uh-Oh! This video is private and not public. </h3>
+        <p>
+          Please check How to use <a class="link_in_alert" href="<%= use_path %>">Download video Facebook</a> ? to Download ANY VIDEO ! ...
+        </p>
+      </div>
+      <%= render "commons/ouo" %>
+    </div>
+  <% end %>
+  <%= render "form" %>
+
+</div>
+
+<div class="row column">
+  <hr>
+</div>

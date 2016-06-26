@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   get :website, to: 'home#website'
   get :terms, to: 'home#terms'
   get :contact, to: 'home#contact'
+  get :use, to: 'home#use'
 end
