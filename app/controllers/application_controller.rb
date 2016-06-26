@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :servers
   before_filter :statistics
   before_filter :supports
-  before_action :prepare_meta_tags, if: "request.get?"
+  before_action :prepare_meta_tags
 
   def servers
     @servers = Server.all

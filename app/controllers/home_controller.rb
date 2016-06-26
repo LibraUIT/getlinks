@@ -9,55 +9,12 @@ class HomeController < ApplicationController
 
   def getlink
     @link = Link.new
-    server = Server.find(params[:server][:action].to_i)
-    link = Link.find_by(url: link_param[:url])
-    quality = {
-        hd: false,
-        hq: false,
-        med: false,
-        sd: false
-    }
-    video = []
-    if link && server.id == nil
-      @origin = link
-      video = parse_video_data(@origin)
-      quality = parse_quality_data(@origin)
+    user_link = URI.parse(link_param[:url])
+    if user_link.host.include? "facebook"
+      facebook(link_param[:url])
     else
-      if !server.captcha
-        uri = URI.parse(server.url)
-      end
-      @origin = get_from_server(link_param[:url])
-      #uri = URI.parse("http://linkaz.net/index.php?action=javpostlink")
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.set_form_data({"link" => link_param[:url]})
-      response = http.request(request)
-      doc = Nokogiri::HTML(response.body)
-      content = ''
-      doc.xpath('//a[@href]').each do |link|
-        content += "#{link.text.strip};#{link['href']}|"
-        video << {
-          quality: link.text.strip,
-          url: link['href']
-        }
-        if link.text.strip == "1080p HD"
-          quality[:hd] = true
-        elsif link.text.strip == "720 HQ"
-          quality[:hq] = true
-        elsif link.text.strip == "480p MED"
-          quality[:med] = true
-        elsif link.text.strip == "240p SD"
-          quality[:sd] = true
-        end
-      end
-      video.shift
-      create = Link.create(@origin.merge(content: content))
-      create.save!
+      javfilm(params)
     end
-    @output = {
-        video: video,
-        quality: quality
-    }
   end
 
   def preview
@@ -78,6 +35,8 @@ class HomeController < ApplicationController
   def website; end
 
   def contact; end
+
+  def use; end
 
   private
 
@@ -147,5 +106,95 @@ class HomeController < ApplicationController
       end
     end
     quality
+  end
+
+  def javfilm(params)
+    server = Server.find(params[:server][:action].to_i)
+    link = Link.find_by(url: link_param[:url])
+    quality = {
+        hd: false,
+        hq: false,
+        med: false,
+        sd: false
+    }
+    video = []
+    if link && server.id == nil
+      @origin = link
+      video = parse_video_data(@origin)
+      quality = parse_quality_data(@origin)
+    else
+      if !server.captcha
+        uri = URI.parse(server.url)
+      end
+      @origin = get_from_server(link_param[:url])
+      #uri = URI.parse("http://linkaz.net/index.php?action=javpostlink")
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Post.new(uri.request_uri)
+      request.set_form_data({"link" => link_param[:url]})
+      response = http.request(request)
+      doc = Nokogiri::HTML(response.body)
+      content = ''
+      doc.xpath('//a[@href]').each do |link|
+        content += "#{link.text.strip};#{link['href']}|"
+        video << {
+          quality: link.text.strip,
+          url: link['href']
+        }
+        if link.text.strip == "1080p HD"
+          quality[:hd] = true
+        elsif link.text.strip == "720 HQ"
+          quality[:hq] = true
+        elsif link.text.strip == "480p MED"
+          quality[:med] = true
+        elsif link.text.strip == "240p SD"
+          quality[:sd] = true
+        end
+      end
+      video.shift
+      create = Link.create(@origin.merge(content: content))
+      create.save!
+    end
+    @output = {
+        video: video,
+        quality: quality
+    }
+  end
+
+  def facebook(url)
+    quality = {
+        hd: false,
+        sd: false
+    }
+    permission = true
+    video = []
+    uri = URI.parse('http://www.fbdown.net/down.php')
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request.set_form_data({"URL" => url})
+    response = http.request(request)
+    doc = Nokogiri::HTML(response.body)
+    doc.css('.well').css('center').xpath('//a[@onmouseover]').each do |link|
+      video << {
+        quality: link.text.strip,
+        url: link['href']
+      }
+      if link.text.strip.upcase.include? "HD"
+        quality[:hd] = true
+      else
+        quality[:sd] = true
+      end
+      permission = false if link['href'].blank?
+    end
+    title = doc.css('.well').css('center').css('strong').first.text
+    img = doc.css('.well').css('center').css('img.img-thumbnail').first['src']
+    @output = {
+        video: video,
+        quality: quality,
+        permission: permission,
+        title: title,
+        img: img,
+        url: url
+    }
+    render "facebook"
   end
 end
