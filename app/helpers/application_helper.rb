@@ -7,4 +7,12 @@ module ApplicationHelper
     paths = controller_path.split('/')
     paths.first
   end
+
+  def status_name(status)
+    status ? 'Actived' : 'Deactived'
+  end
+
+  def no_id(index)
+    index += 1
+  end
 end

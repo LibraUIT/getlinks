@@ -14,7 +14,18 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'home#index'
     resources :home
+    resources :blogs do
+      collection do
+        get :categories, to: 'blogs#categories'
+        get :new_categorie, to: 'blogs#new_categorie'
+        get 'edit_categorie/:id', to: 'blogs#edit_categorie', as: 'edit_categorie'
+        patch 'update_categorie/:id', to: 'blogs#update_categorie', as: 'update_categorie'
+        patch :create_categorie, to: 'blogs#create_categorie'
+        delete 'destroy_categorie/:id', to: 'blogs#destroy_categorie', as: 'destroy_categorie'
+      end
+    end
   end
+  resources :blogs
   get :about, to: 'home#about'
   get :website, to: 'home#website'
   get :terms, to: 'home#terms'
