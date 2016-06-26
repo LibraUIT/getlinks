@@ -21,6 +21,43 @@
                   <%= flash[:notice] %>
                 </div>
               <% end %>
+              <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="100">No.</th>
+                            <th width="110px">Image</th>
+                            <th>Title</th>
+                            <th width="110px">Category</th>
+                            <th width="120px">Author</th>
+                            <th width="110px">Publish</th>
+                            <th style="width: 120px" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <hr style="width: 100%" />
+                    <tbody>
+                      <% @blogs.each_with_index do |blog, index| %>
+                        <tr data-id="<%= blog.id %>">
+                          <td><%= no_id(index) %></td>
+                          <td><%= image_tag blog.image, class: 'blog-thumb' %></td>
+                          <td><%= blog.title %></td>
+                          <td><%= blog.categorie.name %></td>
+                          <td><%= blog.user.email %></td>
+                          <td><%= status_name(blog.status) %></td>
+                          <td>
+                            <%= link_to edit_admin_blog_path(blog), class: 'btn btn-primary' do %>
+                              <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <% end %>
+                            <%= link_to admin_blog_path(blog), class: 'btn btn-danger', method: :delete, data: { confirm: 'Do you want delete it ?. Are you sure ?' }, 'data-severity' => 'danger', :remote => true do %>
+                              <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% end %>
+                      <% if @blogs.count.zero? %>
+                        <tr><td colspan="7">No results</td></tr>
+                      <% end %>
+                    </tbody>
+              </table>
             </div>
         </div>
     </div>

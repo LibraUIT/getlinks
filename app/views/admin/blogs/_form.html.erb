@@ -11,7 +11,7 @@
     <label>Title (*)</label>
   </div>
   <div class="col-sm-10">
-    <%= f.text_field :title, class: 'form-control', placeholder: 'Enter title', required: true  %>
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Enter title here ..', required: true  %>
   </div>
 </div>
 <div class="col-sm-12 margin-bottom-col">
@@ -19,12 +19,12 @@
     <label>Content</label>
   </div>
   <div id="content" class="col-sm-10">
-    <button onclick="showPreview();" type="button" class="btn btn-success" style="margin-bottom:10px">Preview</button>
+    <a href="javascript:void(0)" onclick="showPreview();"> <i class="fa fa-eye" aria-hidden="true"></i> Preview</a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" data-toggle="modal" data-target="#markdownModal"><i class="fa fa-question-circle" aria-hidden="true"></i> Markdown Grammar
 </a>
-    <%= f.text_area :content, class: 'form-control', placeholder: 'Enter content', rows: 20, "oninput" => "this.editor.update()", id: "text-input"  %>
+    <%= f.text_area :content, class: 'form-control', placeholder: 'Enter content here ..', rows: 20, "oninput" => "this.editor.update()", id: "text-input"  %>
   </div>
-  <div style="margin-top:50px" id="content-preview" class="col-sm-5 hide">
+  <div style="margin-top:30px" id="content-preview" class="col-sm-5 hide">
     <div id="preview"> </div>
   </div>
 </div>
@@ -34,14 +34,25 @@
   </div>
   <div class="col-sm-10">
     <%= f.file_field :image, class: 'form-control', accept: 'image/png,image/gif,image/jpeg' %>
+    <% if f.object.image.present? %>
+      <%= image_tag f.object.image, class: 'blog-thumb' %>
+    <% end %>
   </div>
 </div>
 <div class="col-sm-12 margin-bottom-col">
   <div class="col-sm-2">
-    <label>Status</label>
+    <label>Publish</label>
   </div>
   <div class="col-sm-10">
-    <%= f.check_box :status %> Show
+    <%= f.check_box :status %> Yes
+  </div>
+</div>
+<div class="col-sm-12 margin-bottom-col">
+  <div class="col-sm-2">
+    <label>Keywords</label>
+  </div>
+  <div class="col-sm-10">
+    <%= f.text_field :keywords, class: 'form-control', placeholder: 'Enter keywords here ...' %>
   </div>
 </div>
 
