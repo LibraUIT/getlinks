@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">New Category</h1>
+    </div>
+</div>
+<div class="row clients-page">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+              <%= form_for(@categorie, method: :patch, :url => create_categorie_admin_blogs_path, :html => { :role => 'form'}) do |f| %>
+                <% if @categorie.errors.full_messages.present? %>
+                  <ul class="list-message-error alert alert-danger">
+                      <% @categorie.errors.full_messages.each do |error_message| %>
+                      <li><%= error_message %></li>
+                      <% end %>
+                  </ul>
+                <% end %>
+              <%= render "categorie_form", f: f %>
+              <div class="col-sm-12">
+                  <div class="col-sm-6">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                  </div>
+              </div>
+              <% end %>
+            </div>
+        </div>
+    </div>
+</div>

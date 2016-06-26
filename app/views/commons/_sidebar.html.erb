@@ -7,8 +7,13 @@
                 <% end %>
             </li>
             <li class="<%= (controller_name == 'home' && action_name == 'index') ? 'active' : '' %>">
-                <%= link_to admin_home_index_path, target: '_blank' do %>
+                <%= link_to admin_home_index_path do %>
                 <i class="fa fa-dashboard fa-fw" aria-hidden="true"></i> Dashboard
+                <% end %>
+            </li>
+            <li class="<%= (controller_name == 'blogs') ? 'active' : '' %>">
+                <%= link_to admin_blogs_path do %>
+                <i class="fa fa-book fa-fw" aria-hidden="true"></i> Blogs
                 <% end %>
             </li>
         </ul>
