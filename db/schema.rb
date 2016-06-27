@@ -11,19 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626164635) do
+ActiveRecord::Schema.define(version: 20160627154723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "blogs", force: :cascade do |t|
-    t.integer "category_id"
-    t.string  "title"
-    t.string  "image"
-    t.text    "content"
-    t.boolean "status"
-    t.integer "author"
-    t.string  "keywords"
+    t.integer  "category_id"
+    t.string   "title"
+    t.string   "image"
+    t.text     "content"
+    t.boolean  "status"
+    t.integer  "author"
+    t.string   "keywords"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "blogs", ["category_id"], name: "index_blogs_on_category_id", using: :btree

@@ -1,3 +1,15 @@
 .img-step {
   width: 500px;
 }
+
+ul, li {
+  list-style-type: none;
+}
+
+.page.active {
+  background-color: #2199e8;
+
+  a {
+    color: #FFF;
+  }
+}

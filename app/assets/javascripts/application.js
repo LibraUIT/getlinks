@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require ./vendor/foundation
 //= require app.js
+//= require markdown
