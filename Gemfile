@@ -26,6 +26,7 @@ gem 'static_model'
 gem 'roboto'
 gem 'meta-tags'
 gem 'markdownjs-rails'
+gem 'friendly_id'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
