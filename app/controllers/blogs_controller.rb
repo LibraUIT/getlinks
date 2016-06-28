@@ -13,7 +13,7 @@ class BlogsController < ApplicationController
 
   def search_blogs(params)
     order = params[:order].present? ? params[:order] : 'id DESC'
-    per = params[:per].present? ? params[:per] : 20
+    per = params[:per].present? ? params[:per] : 6
     blogs = Blog.by_actived
     blogs = blogs.page(params[:page]).per(per).sort_by(order)
     blogs

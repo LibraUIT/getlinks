@@ -1,19 +1,23 @@
-<div class="callout large primary">
-  <div class="row column text-center">
-    <h1>Our Blog</h1>
-  </div>
+<%= render "commons/cover" %>
+<div class="column">
+  <hr style="border-bottom: 1px solid #FFF">
 </div>
 <div class="row" id="content">
     <div class="medium-8 columns">
       <% @blogs.each do |blog| %>
         <div class="blog-post">
-          <h3><%= blog.title %></h3>
-          <%= image_tag blog.image, class: 'thumbnail', width: '100%' %>
+          <%= link_to "#" do %>
+            <%= image_tag blog.image, class: 'thumbnail', width: '100%', 'alt' => blog.title, 'title' => blog.title %>
+          <% end %>
+          <%= link_to "#" do %>
+            <h3><%= blog.title %></h3>
+          <% end %>
           <p class="markdown"><%= blog.content %></p>
-          <div class="callout">
+          <div class="callout post-author">
             <ul class="menu simple">
-              <li><a href="#">Author: <%= blog.user.username %></a></li>
-              <!--<li><a href="#">Comments: 3</a></li>-->
+              <li><a href="#" class="post-info"><i class="fa fa-folder-open" aria-hidden="true"></i> <%= blog.categorie.name %></a></li>
+              <li><a href="#" class="post-info"><i class="fa fa-comment-o" aria-hidden="true"></i> Comments: 3</a></li>
+              <li><a href="#" class="post-info"><i class="fa fa-eye" aria-hidden="true"></i> Views: 69</a></li>
             </ul>
           </div>
         </div>
@@ -21,7 +25,7 @@
     </div>
     <div class="medium-3 columns" data-sticky-container>
       <div class="sticky" data-sticky data-anchor="content">
-        <h4>Categories</h4>
+        <h5>Categories</h5>
         <ul>
           <% @categories.each do |categorie| %>
             <li>
@@ -31,17 +35,18 @@
             </li>
           <% end %>
         </ul>
-
-        <!--<h4>Authors</h4>
-        <ul>
-          <li><a href="#">Skyler</a></li>
-          <li><a href="#">Jesse</a></li>
-          <li><a href="#">Mike</a></li>
-          <li><a href="#">Holly</a></li>
-        </ul>-->
+        <h6>Advertisement</h6>
+        <div class="small-12">
+          <%= link_to 'http://ouo.io/zbgy7k', target: '_blank' do %>
+            <%= image_tag 'digitalocean-banner' %>
+          <% end %>
+        </div>
       </div>
     </div>
 </div>
 <div class="row column">
   <%= paginate @blogs, :theme => 'twitter-bootstrap-3', :pagination_class => ""  %>
+</div>
+<div class="row column">
+    <%= render "commons/ouo" %>
 </div>
