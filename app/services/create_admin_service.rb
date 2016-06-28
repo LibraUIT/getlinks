@@ -4,6 +4,8 @@ class CreateAdminService
       user.password = 'password'
       user.password_confirmation = 'password'
       user.user_type = 1
+      user.username = 'admin'
+      user.fullname = 'Quan Nguyen'
     end
   end
 end

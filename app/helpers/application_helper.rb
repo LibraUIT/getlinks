@@ -15,4 +15,8 @@ module ApplicationHelper
   def no_id(index)
     index += 1
   end
+
+  def format_date(date)
+    !date.nil? ? date.strftime('%Y-%m-%d') : nil
+  end
 end

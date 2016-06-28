@@ -5,6 +5,8 @@ class Blog < ActiveRecord::Base
   validates :content, presence: true
   validates :image, presence: true
   validates :category_id, presence: true
+  scope :sort_by, -> (order) { order(order) }
+  scope :by_actived, -> () { where(status: true) }
 
   mount_uploader :image, BlogImageUploader
 end
