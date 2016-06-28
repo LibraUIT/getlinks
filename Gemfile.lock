@@ -260,7 +260,6 @@ DEPENDENCIES
   markdownjs-rails
   meta-tags
   pg
-  puma
   rails (= 4.2.6)
   rails_12factor
   rails_layout
