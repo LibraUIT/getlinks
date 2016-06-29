@@ -31,4 +31,5 @@ Rails.application.routes.draw do
   get :terms, to: 'home#terms'
   get :contact, to: 'home#contact'
   get :use, to: 'home#use'
+  resources :search
 end
