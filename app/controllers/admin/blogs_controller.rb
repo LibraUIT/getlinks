@@ -100,7 +100,7 @@ class Admin::BlogsController < Admin::ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:category_id, :title, :content, :image, :status)
+    params.require(:blog).permit(:category_id, :title, :content, :image, :status, :keywords)
   end
 
   def current_category

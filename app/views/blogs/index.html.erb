@@ -6,18 +6,18 @@
     <div class="medium-8 columns">
       <% @blogs.each do |blog| %>
         <div class="blog-post">
-          <%= link_to "#" do %>
+          <%= link_to blog_path(blog) do %>
             <%= image_tag blog.image, class: 'thumbnail', width: '100%', 'alt' => blog.title, 'title' => blog.title %>
           <% end %>
-          <%= link_to "#" do %>
+          <%= link_to blog_path(blog) do %>
             <h3><%= blog.title %></h3>
           <% end %>
           <p class="markdown"><%= blog.content %></p>
           <div class="callout post-author">
             <ul class="menu simple">
-              <li><a href="#" class="post-info"><i class="fa fa-folder-open" aria-hidden="true"></i> <%= blog.categorie.name %></a></li>
-              <li><a href="#" class="post-info"><i class="fa fa-comment-o" aria-hidden="true"></i> Comments: 3</a></li>
-              <li><a href="#" class="post-info"><i class="fa fa-eye" aria-hidden="true"></i> Views: 69</a></li>
+              <li><a href="javascript:void(0)" class="post-info"><i class="fa fa-folder-open" aria-hidden="true"></i> <%= blog.categorie.name %></a></li>
+              <li><a href="javascript:void(0)" class="post-info"><i class="fa fa-comment-o" aria-hidden="true"></i> Comments: 3</a></li>
+              <li><a href="javascript:void(0)" class="post-info"><i class="fa fa-eye" aria-hidden="true"></i> Views: <%= blog.views.to_i %></a></li>
             </ul>
           </div>
         </div>
@@ -26,8 +26,8 @@
         <div class="blog-post"><h4>Comming soon !</h4></div>
       <% end %>
     </div>
-    <div class="medium-3 columns" data-sticky-container>
-      <div class="sticky" data-sticky data-anchor="content">
+    <div class="medium-4 columns" data-sticky-container>
+      <div class="sticky" data-anchor="content">
         <h5>Categories</h5>
         <ul>
           <% @categories.each do |categorie| %>

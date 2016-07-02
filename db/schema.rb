@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628101407) do
+ActiveRecord::Schema.define(version: 20160702040344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20160628101407) do
     t.string   "keywords"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
+    t.integer  "views"
   end
 
   add_index "blogs", ["category_id"], name: "index_blogs_on_category_id", using: :btree
@@ -33,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160628101407) do
   create_table "categories", force: :cascade do |t|
     t.string  "name"
     t.boolean "status", default: true
+    t.string  "slug"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -75,6 +78,7 @@ ActiveRecord::Schema.define(version: 20160628101407) do
     t.string   "username"
     t.string   "avatar"
     t.string   "fullname"
+    t.string   "slug"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

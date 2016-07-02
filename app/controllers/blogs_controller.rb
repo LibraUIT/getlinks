@@ -1,8 +1,15 @@
 class BlogsController < ApplicationController
   before_action :current_categories, only: [:index]
+  before_action :set_blog, only: [:show]
 
   def index
     @blogs = search_blogs(params)
+  end
+
+  def show
+    @blog.update(views: @blog.views.to_i + 1)
+    @blog.save
+    @recommended = Blog.recommended(5).decorate
   end
 
   private
@@ -17,5 +24,9 @@ class BlogsController < ApplicationController
     blogs = Blog.by_actived
     blogs = blogs.page(params[:page]).per(per).sort_by(order)
     blogs
+  end
+
+  def set_blog
+    @blog = Blog.find(params[:id]).decorate
   end
 end
