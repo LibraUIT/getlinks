@@ -213,3 +213,30 @@ a:hover {
     color: #2199e8;
   }
 }
+
+.no-padding {
+  padding: 0 !important;
+}
+
+h6.recommend-post-title {
+  font-weight: bold !important;
+  margin-left: 5px;
+  font-size: 13px;
+}
+
+h6.recommend-post-info {
+  margin-left: 5px;
+  color: #333;
+  font-size: 11px;
+}
+
+h6.post-tags {
+  font-size: 11px;
+  color: #333;
+  font-weight: bold;
+}
+
+p.post-keywords {
+  font-size: 13px;
+  color: #666;
+}

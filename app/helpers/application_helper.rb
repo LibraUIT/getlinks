@@ -1,6 +1,10 @@
 module ApplicationHelper
   def current_domain
-    "#{request.protocol}#{request.host}:#{request.port}"
+    if controller_name != 'blogs'
+      "#{request.protocol}#{request.host}:#{request.port}"
+    else
+      "#{request.protocol}#{request.host}:#{request.port}#{ request.fullpath}"
+    end
   end
 
   def current_namespace

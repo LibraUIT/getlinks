@@ -27,6 +27,7 @@ gem 'roboto'
 gem 'meta-tags'
 gem 'markdownjs-rails'
 gem 'friendly_id'
+gem 'draper', '~> 1.3'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

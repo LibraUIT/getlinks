@@ -1,0 +1,75 @@
+<div class="column">
+  <hr style="border-bottom: 1px solid #FFF">
+</div>
+<div class="row" id="content">
+  <div class="medium-8 columns">
+    <h1><%= @blog.title %></h1>
+    <p>
+      <h6 class="recommend-post-info" >
+        <i class="fa fa-clock-o" aria-hidden="true"></i> <%= @blog.created_at %>
+        &nbsp;
+        <i class="fa fa-eye" aria-hidden="true"></i> <%= @blog.views.to_i %>
+        &nbsp;
+        <i class="fa fa-comments" aria-hidden="true"></i> 10
+        &nbsp;
+        <i class="fa fa-user" aria-hidden="true"></i> <%= @blog.user.username %>
+      </h6>
+    </p>
+    <p class="markdown-content"><%= @blog.content %></p>
+    <div class="column">
+      <hr style="border-bottom: 1px solid #FFF">
+    </div>
+    <p>
+      <h6 class="post-tags">Tags : </h6>
+      <p class="post-keywords">
+        <%= @blog.keywords %>
+      </p>
+    </p>
+    <div class="column">
+      <hr style="border-bottom: 1px solid #FFF">
+    </div>
+    <%= render "commons/comments" %>
+  </div>
+  <div class="medium-4 columns">
+    <div class=""  data-anchor="content">
+      <h5><i class="fa fa-coffee" aria-hidden="true"></i> Recommended for you</h5>
+      <ul>
+        <% @recommended.each do |blog| %>
+            <li>
+              <%= link_to blog_path(blog), title: blog.title do %>
+                  <div class="medium-12 columns no-padding">
+                    <div class="medium-4 columns no-padding">
+                      <%= image_tag blog.image, class: 'blog-img-thumb', alt: blog.title, title: blog.title %>
+                    </div>
+                    <div class="medium-8 columns no-padding">
+                      <p>
+                        <h6 class="recommend-post-title" ><%= blog.title %></h6>
+                        <h6 class="recommend-post-info" >
+                          <i class="fa fa-clock-o" aria-hidden="true"></i> <%= blog.created_at %>
+                          &nbsp;
+                          <i class="fa fa-eye" aria-hidden="true"></i> 69
+                          &nbsp;
+                          <i class="fa fa-comments" aria-hidden="true"></i> 10
+                        </h6>
+                      </p>
+                    </div>
+                  </div>
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+      <div class="column">
+        <hr style="border-bottom: 1px solid #FFF">
+      </div>
+      <h6>Advertisement</h6>
+      <div class="small-12">
+        <%= link_to 'http://ouo.io/zbgy7k', target: '_blank' do %>
+            <%= image_tag 'digitalocean-banner' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row column">
+  <%= render "commons/ouo" %>
+</div>
