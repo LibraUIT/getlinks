@@ -152,7 +152,7 @@ class HomeController < ApplicationController
       end
       video.shift
       create = Link.create(@origin.merge(content: content))
-      create.save!
+      create.save
     end
     @output = {
         video: video,
