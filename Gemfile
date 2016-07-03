@@ -29,15 +29,16 @@ gem 'markdownjs-rails'
 gem 'friendly_id'
 gem 'draper', '~> 1.3'
 gem 'net-ssh'
+gem 'sitemap_generator'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails_layout'
-  gem 'capistrano',         require: false
-  gem 'capistrano-rvm',     require: false
-  gem 'capistrano-rails',   require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false
+  #gem 'capistrano',         require: false
+  #gem 'capistrano-rvm',     require: false
+  #gem 'capistrano-rails',   require: false
+  #gem 'capistrano-bundler', require: false
+  #gem 'capistrano3-puma',   require: false
 end
 group :development, :test do
   gem 'rubocop'
