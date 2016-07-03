@@ -1,0 +1,27 @@
+<section class="fw-section bg-parallax padding-top-3x padding-bottom-3x" style="background-image: url(&quot;<%= asset_url('feature-bg-1.jpg') %>&quot;); background-position: 50% 18.068px;">
+  <div style="margin-left:10%" class="container padding-top padding-bottom">
+    <div class="row">
+      <div class="medium-12 columns" style="overflow: hidden;">
+        <h2 class="block-title text-light scrollReveal sr-scaleUp" data-sr-id="4" style="; visibility: visible;  -webkit-transform: translateY(0) scale(1); opacity: 1;transform: translateY(0) scale(1); opacity: 1;-webkit-transition: -webkit-transform 0.85s ease-in-out 0s, opacity 0.85s ease-in-out 0s; transition: transform 0.85s ease-in-out 0s, opacity 0.85s ease-in-out 0s; ">
+          LINHKNHANH.INFO
+          <small>Ex : facebook.com, youtube.com, javhd.com & <a href="<%= website_path %>">more sites</a></small>
+          <div class="search-form">
+            <%= form_for @link, method: :post, url: getlink_path do |f| %>
+                <div style="width: 100%" class="row">
+                  <div class="small-12 columns">
+                    <label>
+                      <%= f.url_field :url, class: "form-control", placeholder: "Just enter your link here...", required: true %>
+                      <%= select :server, :action, @servers.map{|c| [c.name, c.id]}, {class: '', required: true }, style: 'display:none' %>
+                    </label>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </h2>
+      </div>
+      <div class="medium-6 columns padding-top" style="overflow: hidden;">
+        <%= image_tag "rocket.png", class: 'scrollReveal sr-long-left', 'alt' => "LINHKNHANH.INFO ROCKER", 'data-sr-id' => "3", style: "; visibility: visible;  -webkit-transform: translateX(0) scale(1); opacity: 1;transform: translateX(0) scale(1); opacity: 1;-webkit-transition: -webkit-transform 1s ease-in-out 0s, opacity 1s ease-in-out 0s; transition: transform 1s ease-in-out 0s, opacity 1s ease-in-out 0s;" %>
+      </div>
+    </div><!-- .row -->
+  </div>
+</section>
