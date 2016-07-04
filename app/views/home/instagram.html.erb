@@ -1,0 +1,36 @@
+<div class="row column">
+  <h1><i class="fa fa-instagram" aria-hidden="true"></i> Instagram Photo Download</h1>
+</div>
+<div class="row small-up-1 medium-up-2 large-up-3">
+  <%= form_for @link, method: :post, url: getlink_path do |f| %>
+    <div style="padding:20px" class="row">
+        <div class="small-6 columns">
+          <label>
+            <%= f.url_field :url, class: "form-control", placeholder: "Enter Instagram URL", required: true %>
+          </label>
+          <%= image_tag @img, class: 'img-instagram' %>
+          <h4><%= link_to 'DOWNLOAD', @img %></h4>
+          <p>
+            Click "Download" Link to save the Image <br />
+
+            Or right-click on Image above and click "Save Image as.." <br />
+
+            On Mobile Long press Image above and save Image. <br />
+
+            This Photo Downloading Website is developed and designed by <b>LINKNHANH</b> Team.<br />
+          </p>
+        </div>
+        <div class="small-6 columns">
+          <label>
+            <%= select :server, :action, @servers.map{|c| [c.name, c.id]}, {class: '', required: true }, style: 'display:none' %>
+            <button type="submit" class="button">GO</button>
+          </label>
+        </div>
+      <div class="small-6 columns">
+        <%= link_to 'http://ouo.io/zbgy7k', target: '_blank' do %>
+          <%= image_tag 'digitalocean-banner' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -12,6 +12,8 @@ class HomeController < ApplicationController
     user_link = URI.parse(link_param[:url])
     if user_link.host.include? "facebook"
       facebook(link_param[:url])
+    elsif user_link.host.include? "instagram"
+      instagram(link_param[:url])
     else
       javfilm(params)
     end
@@ -196,5 +198,17 @@ class HomeController < ApplicationController
         url: url
     }
     render "facebook"
+  end
+
+  def instagram(url)
+    uri = URI.parse('http://www.dinsta.com/photos/')
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request.set_form_data({"url" => url})
+    response = http.request(request)
+    doc = Nokogiri::HTML(response.body)
+    img = doc.css('#goaway').css('img[@src]')
+    @img = doc.css('#goaway').css('img[@src]').first['src']
+    render "instagram"
   end
 end
