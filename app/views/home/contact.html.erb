@@ -7,7 +7,37 @@
       </h3>
     </p>
     <p>
-      Updating...
+      <div class="medium-5 large-6 columns no-padding">
+        <div class="secondary">
+          <% if flash[:notice] %>
+            <div class="alert alert-success"><%= flash[:notice] %></div>
+          <% end %>
+          <%= form_for @contact, method: :post, url: create_contact_path do |f| %>
+            <div class="row">
+              <div class="small-12 columns">
+                <label>Your Name : </h3>
+                  <%= f.text_field :name, class: "form-control", placeholder: "Enter your name", required: true %>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <label>Your Email : </h3>
+                  <%= f.email_field :email, class: "form-control", placeholder: "Enter your email", required: true %>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <label>Your Message : </h3>
+                  <%= f.text_area :content, class: "form-control", placeholder: "Enter your message", rows: 5, required: true %>
+                </label>
+                <button type="submit" class="button">Send</button>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </p>
   </div>
  </div>

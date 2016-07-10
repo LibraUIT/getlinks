@@ -36,9 +36,24 @@ class HomeController < ApplicationController
 
   def website; end
 
-  def contact; end
+  def contact
+    @contact = Contact.new
+  end
 
   def use; end
+
+  def create_contact
+    @contact = Contact.create(contact_params)
+    respond_to do |format|
+      if @contact.save
+        format.html { redirect_to contact_path, notice: 'Your message was successfully send.' }
+        format.json { render :new, status: :created, location: @contact }
+      else
+        format.html { render :new }
+        format.json { render json: @contact.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   private
 
@@ -210,5 +225,9 @@ class HomeController < ApplicationController
     img = doc.css('#goaway').css('img[@src]')
     @img = doc.css('#goaway').css('img[@src]').first['src']
     render "instagram"
+  end
+
+  def contact_params
+    params.require(:contact).permit(:name, :email, :content)
   end
 end
