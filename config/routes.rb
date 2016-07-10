@@ -31,5 +31,6 @@ Rails.application.routes.draw do
   get :terms, to: 'home#terms'
   get :contact, to: 'home#contact'
   get :use, to: 'home#use'
+  post :create_contact, to: 'home#create_contact'
   resources :search
 end
