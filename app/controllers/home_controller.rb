@@ -14,8 +14,8 @@ class HomeController < ApplicationController
       facebook(link_param[:url])
     elsif user_link.host.include? "instagram"
       instagram(link_param[:url])
-    else
-      javfilm(params)
+    elsif user_link.host.include? "javhd"
+      javhd(link_param[:url])
     end
   end
 
@@ -229,5 +229,82 @@ class HomeController < ApplicationController
 
   def contact_params
     params.require(:contact).permit(:name, :email, :content)
+  end
+
+  def javhd(url)
+    uri = URI.parse(url)
+    doc = get_doc(url)
+    if @supports.map(&:downcase).include? uri.host.downcase
+      title = doc.css('title')
+      thumb = doc.css('span.general-thumb img[@src]').first
+      output = {
+        name: title ? title.text : url,
+        thumb: thumb ? thumb['src'] : nil,
+        url: url
+      }
+    else
+      output = {
+        name: url,
+        thumb: nil,
+        url: url
+      }
+    end
+    @origin = output
+    quality = {
+        hd: false,
+        hq: false,
+        med: false,
+        sd: false
+    }
+    jav_name = nil
+    if !output[:thumb].nil?
+      jav_link_name = output[:thumb].split('/')
+      jav_name = jav_link_name[4]
+      jav_name = jav_name.gsub('-p', '')
+    end
+    video = []
+    doc.css('.downloads').css('ul').each do |download|
+      content = download.text
+      if content.include? "HD"
+        quality[:hd] = true
+        q = 'hq'
+        video << {
+          quality: 'HQ Quality',
+          url: auto_url(jav_name, q)
+        }
+      end
+      if content.include? "Normal"
+        quality[:hq] = true
+        q = 'sh'
+        video << {
+          quality: 'Normal Quality',
+          url: auto_url(jav_name, q)
+        }
+      end
+      if content.include? "Low"
+        quality[:med] = true
+        q = 'med'
+        video << {
+          quality: 'Low Quality',
+          url: auto_url(jav_name, q)
+        }
+      end
+      if content.include? "iPhone"
+        quality[:sd] = true
+        q = 'low'
+        video << {
+          quality: 'iPhone Version',
+          url: auto_url(jav_name, q)
+        }
+      end
+    end
+    @output = {
+        video: video,
+        quality: quality
+    }
+  end
+
+  def auto_url(jav_name, q)
+    "http://cs341.wpc.alphacdn.net/802D70B/OriginJHVD/contents/#{jav_name}/videos/#{jav_name}_#{q}.mp4"
   end
 end
