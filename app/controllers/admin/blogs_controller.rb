@@ -12,7 +12,7 @@ class Admin::BlogsController < Admin::ApplicationController
   end
 
   def create
-    @blog = Blog.create(blog_params.merge({author: current_user.id}))
+    @blog = Blog.create(blog_params.merge(author: current_user.id))
     respond_to do |format|
       if @blog.save
         format.html { redirect_to admin_blogs_path, notice: 'Blog was successfully created.' }
@@ -44,7 +44,7 @@ class Admin::BlogsController < Admin::ApplicationController
     @blog.destroy
     respond_to do |format|
       format.html
-      format.js { render "destroy", :locals => {:id => id}}
+      format.js { render 'destroy', locals: { id: id } }
     end
   end
 
@@ -89,7 +89,7 @@ class Admin::BlogsController < Admin::ApplicationController
     @categorie.destroy
     respond_to do |format|
       format.html
-      format.js { render "destroy_categorie", :locals => {:id => id}}
+      format.js { render 'destroy_categorie', locals: { id: id } }
     end
   end
 
@@ -115,7 +115,7 @@ class Admin::BlogsController < Admin::ApplicationController
     @categories = Category.by_actived
   end
 
-  def search_blogs(params)
+  def search_blogs(_params)
     blogs = Blog.all
   end
 end

@@ -8,7 +8,7 @@ class Blog < ActiveRecord::Base
   validates :category_id, presence: true
   scope :sort_by, -> (order) { order(order) }
   scope :by_actived, -> () { where(status: true) }
-  scope :recommended, -> (limit) { order("RANDOM()").limit(limit) }
+  scope :recommended, -> (limit) { order('RANDOM()').limit(limit) }
 
   mount_uploader :image, BlogImageUploader
   friendly_id :title, use: [:slugged, :finders]

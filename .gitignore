@@ -17,4 +17,4 @@
 /tmp
 /.idea
 /.idea/vcs.xml
-/app/views/layouts/application.html.erb
+/config/database.yml
