@@ -1,0 +1,92 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - .gems/**/*
+    - bin/**/*
+    - config/**/*
+    - db/**/*
+    - log/**/*
+    - public/**/*
+    - tmp/**/*
+    - vendor/**/*
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
+    - config.ru
+    - Guardfile
+    - Rakefile
+
+Style/AccessorMethodName:
+  Enabled: false
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/AndOr:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Style/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Style/MutableConstant:
+  Enabled: true
+
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+
+Style/SpaceInsidePercentLiteralDelimiters:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/BlockNesting:
+  Max: 4
+
+Metrics/ClassLength:
+  Max: 250
+
+Metrics/ModuleLength:
+  Max: 250
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Rails/Delegate:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+

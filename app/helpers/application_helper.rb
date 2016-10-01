@@ -3,7 +3,7 @@ module ApplicationHelper
     if controller_name != 'blogs'
       "#{request.protocol}#{request.host}:#{request.port}"
     else
-      "#{request.protocol}#{request.host}:#{request.port}#{ request.fullpath}"
+      "#{request.protocol}#{request.host}:#{request.port}#{request.fullpath}"
     end
   end
 
